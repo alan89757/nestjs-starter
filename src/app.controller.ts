@@ -10,42 +10,32 @@ import {
   Query,
   Req,
   Headers,
+  HttpCode,
+  Header,
+  Redirect,
 } from '@nestjs/common';
 import { Request } from 'express';
 
 @Controller('app')
 export class AppController {
-  @Get('/all')
-  all(@Req() req: Request): string {
-    console.log(req);
-    return 'hello all';
+  // 设置状态码
+  @Get('/httpCode')
+  @HttpCode(304)
+  getHttpCode() {
+    return 'hello getHttpCode';
   }
 
-  // req.Param
-  @Get('/param/:id')
-  getParams(@Param('id') id: number): string {
-    console.log(id);
-    return `获得参数id为${id}`;
+  // 设置header头
+  @Get('/header')
+  @Header('abc', 'xxx')
+  getHeaders() {
+    return 'hello getHeaders';
   }
 
-  // req.Body
-  @Post('body')
-  getBody(@Body() req: object): object {
-    console.log(req);
-    return req;
-  }
-
-  // req.Query
-  @Get('query')
-  getQuery(@Query('name') name: string): string {
-    console.log(name);
-    return `获得参数name为${name}`;
-  }
-
-  // req.Headers
-  @Get('header')
-  getHeader(@Headers() req: object): object {
-    console.log(req);
-    return req;
+  // 重定向
+  @Get('/redirect')
+  @Redirect('https://nestjs.com', 301)
+  getRedirect(): string {
+    return 'hello getRedirect';
   }
 }
