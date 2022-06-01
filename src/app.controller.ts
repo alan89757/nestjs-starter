@@ -16,7 +16,9 @@ import { AppService } from './app.service';
 
 @Controller('app')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) {
+    // 通过构造函数注入依赖
+  }
 
   /** 设置response */
 
