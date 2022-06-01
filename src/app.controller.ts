@@ -1,26 +1,51 @@
-import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
-import { AppService } from './app.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  Query,
+  Req,
+  Headers,
+} from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller('app')
 export class AppController {
-  @Get('/list')
-  list(): string {
-    return 'hello list';
+  @Get('/all')
+  all(@Req() req: Request): string {
+    console.log(req);
+    return 'hello all';
   }
-  @Post('/create')
-  create(): string {
-    return 'hello create';
+
+  // req.Param
+  @Get('/param/:id')
+  getParams(@Param('id') id: number): string {
+    console.log(id);
+    return `获得参数id为${id}`;
   }
-  @Put('/put')
-  put(): string {
-    return 'hello create';
+
+  // req.Body
+  @Post('body')
+  getBody(@Body() req: object): object {
+    console.log(req);
+    return req;
   }
-  @Delete('/delete')
-  delete(): string {
-    return 'hello create';
+
+  // req.Query
+  @Get('query')
+  getQuery(@Query('name') name: string): string {
+    console.log(name);
+    return `获得参数name为${name}`;
   }
-  @Patch('/patch')
-  patch(): string {
-    return 'hello create';
+
+  // req.Headers
+  @Get('header')
+  getHeader(@Headers() req: object): object {
+    console.log(req);
+    return req;
   }
 }
