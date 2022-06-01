@@ -8,7 +8,7 @@ import {
   Query,
   Headers,
   HttpCode,
-  Head,
+  Header,
   Redirect,
 } from '@nestjs/common';
 import { Request } from 'express';
@@ -23,21 +23,21 @@ export class AppController {
   /** 设置response */
 
   // 设置状态码
-  @Get()
+  @Get('/res/httpCode')
   @HttpCode(304)
   getHttpCode() {
     return 'hello getHttpCode';
   }
 
   // 设置header头
-  @Get()
-  @Head('Cache-Control', 'none')
+  @Get('/res/header')
+  @Header('Cache-Control', 'none')
   getHeaders() {
     return 'hello getHeaders';
   }
 
   // 重定向
-  @Get()
+  @Get('/res/redirect')
   @Redirect('https://nestjs.com', 301)
   getRedirect(): string {
     return 'hello getRedirect';
@@ -53,45 +53,45 @@ export class AppController {
    */
 
   // req
-  @Get()
+  @Get('/req/all')
   getReq(@Req() req: Request): string {
-    console.log(req.header);
+    console.log(req);
     return 'hello getReq';
   }
 
   // req.Param
-  @Get()
-  getParams(@Param() req: Request): string {
-    console.log(req.params);
-    return 'hello getParams';
+  @Get('/param/:id')
+  getParams(@Param('id') id: number): string {
+    console.log(id);
+    return `获得参数id为${id}`;
   }
 
   // req.Body
-  @Get()
-  getBody(@Body() req: Request): string {
-    console.log(req.body);
-    return 'hello getBody';
+  @Post('body')
+  getBody(@Body() req: object): object {
+    console.log(req);
+    return req;
   }
 
   // req.Query
-  @Get()
-  getQuery(@Query() req: Request): string {
-    console.log(req.query);
-    return 'hello getQuery';
+  @Get('query')
+  getQuery(@Query('name') name: string): string {
+    console.log(name);
+    return `获得参数name为${name}`;
   }
 
   // req.Headers
-  @Get()
-  getHeader(@Headers() req: Request): string {
-    console.log(req.headers);
-    return 'hello getHeader';
+  @Get('header')
+  getHeader(@Headers() req: object): object {
+    console.log(req);
+    return req;
   }
 
   /** 路由 */
 
-  @Get('find') // 支持路由通配符*
-  find(): string {
-    return 'hello find';
+  @Get('search') // 支持路由通配符*
+  search(): string {
+    return 'hello search';
   }
   @Post('create')
   create(): string {
