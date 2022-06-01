@@ -15,27 +15,13 @@ import {
   Redirect,
 } from '@nestjs/common';
 import { Request } from 'express';
+import { AppService } from './app.service';
 
 @Controller('app')
 export class AppController {
-  // 设置状态码
-  @Get('/httpCode')
-  @HttpCode(304)
-  getHttpCode() {
-    return 'hello getHttpCode';
-  }
-
-  // 设置header头
-  @Get('/header')
-  @Header('abc', 'xxx')
-  getHeaders() {
-    return 'hello getHeaders';
-  }
-
-  // 重定向
-  @Get('/redirect')
-  @Redirect('https://nestjs.com', 301)
-  getRedirect(): string {
-    return 'hello getRedirect';
+  constructor(private readonly appservice: AppService) {}
+  @Get('hello')
+  getHello(): string {
+    return this.appservice.getHello();
   }
 }
