@@ -1,4 +1,16 @@
-import { Controller, Get, Post, Req, Param, Body, Query, Headers, HttpCode, Head, Redirect } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Req,
+  Param,
+  Body,
+  Query,
+  Headers,
+  HttpCode,
+  Head,
+  Redirect,
+} from '@nestjs/common';
 import { Request } from 'express';
 import { AppService } from './app.service';
 
@@ -14,21 +26,20 @@ export class AppController {
   getHttpCode() {
     return 'hello getHttpCode';
   }
-  
+
   // 设置header头
   @Get()
   @Head('Cache-Control', 'none')
   getHeaders() {
     return 'hello getHeaders';
   }
-  
+
   // 重定向
   @Get()
   @Redirect('https://nestjs.com', 301)
-  getRedirect(): string{
+  getRedirect(): string {
     return 'hello getRedirect';
   }
-
 
   /** 获取请求参数 */
   /**
@@ -53,19 +64,19 @@ export class AppController {
     return 'hello getParams';
   }
 
-   // req.Body
-   @Get()
-   getBody(@Body() req: Request): string {
-     console.log(req.body);
-     return 'hello getBody';
-   }
- 
-   // req.Query
-   @Get()
-   getQuery(@Query() req: Request): string {
-     console.log(req.query);
-     return 'hello getQuery';
-   }
+  // req.Body
+  @Get()
+  getBody(@Body() req: Request): string {
+    console.log(req.body);
+    return 'hello getBody';
+  }
+
+  // req.Query
+  @Get()
+  getQuery(@Query() req: Request): string {
+    console.log(req.query);
+    return 'hello getQuery';
+  }
 
   // req.Headers
   @Get()
@@ -73,7 +84,6 @@ export class AppController {
     console.log(req.headers);
     return 'hello getHeader';
   }
-
 
   /** 路由 */
 
@@ -86,6 +96,5 @@ export class AppController {
     return 'hello create';
   }
 
-   /** end 路由 */
- 
+  /** end 路由 */
 }
