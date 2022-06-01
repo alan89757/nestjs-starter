@@ -16,12 +16,13 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { AppService } from './app.service';
+import { CatsService } from './cats/cats.service';
 
 @Controller('app')
 export class AppController {
-  constructor(private readonly appservice: AppService) {}
+  constructor(private readonly catsService: CatsService) {}
   @Get('hello')
   getHello(): string {
-    return this.appservice.getHello();
+    return this.catsService.getCats();
   }
 }
