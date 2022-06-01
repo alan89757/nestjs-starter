@@ -1,12 +1,36 @@
-import { Controller, Get, Post, Req, Param, Body, Query, Headers } from '@nestjs/common';
+import { Controller, Get, Post, Req, Param, Body, Query, Headers, HttpCode, Head, Redirect } from '@nestjs/common';
 import { Request } from 'express';
 import { AppService } from './app.service';
 
 @Controller('app')
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  /** 设置response */
+
+  // 设置状态码
+  @Get()
+  @HttpCode(304)
+  getHttpCode() {
+    return 'hello getHttpCode';
+  }
   
-  /** 请求参数 */
+  // 设置header头
+  @Get()
+  @Head('Cache-Control', 'none')
+  getHeaders() {
+    return 'hello getHeaders';
+  }
+  
+  // 重定向
+  @Get()
+  @Redirect('https://nestjs.com', 301)
+  getRedirect(): string{
+    return 'hello getRedirect';
+  }
+
+
+  /** 获取请求参数 */
   /**
    * @Param(key?: string)	req.params/req.params[key]
     @Body(key?: string)	req.body/req.body[key]
@@ -53,13 +77,13 @@ export class AppController {
 
   /** 路由 */
 
-  @Get('list')
-  getList(): string {
-    return 'hello getList';
+  @Get('find') // 支持路由通配符*
+  find(): string {
+    return 'hello find';
   }
-  @Post('addItem')
-  addItemn(): string {
-    return 'hello addItem';
+  @Post('create')
+  create(): string {
+    return 'hello create';
   }
 
    /** end 路由 */
