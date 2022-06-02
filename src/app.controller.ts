@@ -49,11 +49,11 @@ export class AppController {
   constructor(private readonly catsService: CatsService) {}
 
   // 拦截器-异常映射
-  // @Get('interceptor-exception')
-  // @UseInterceptors(new ErrorsInterceptor())
+  @Get('interceptor-exception')
+  @UseInterceptors(new ErrorsInterceptor())
   exception(): string {
     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-    // return 'get interceptor-exception';
+    return 'get interceptor-exception';
   }
 
   // 拦截器-响应映射
