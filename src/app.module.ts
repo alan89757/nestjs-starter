@@ -17,6 +17,6 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(Logger1Middleware, Logger2Middleware, Logger3Middleware)
-      .forRoutes('cats');
+      .forRoutes('/cats/global-fn-middleware');
   }
 }
