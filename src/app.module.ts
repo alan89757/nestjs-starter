@@ -13,16 +13,17 @@ import { Logger3Middleware } from './middleware/logger3.middleware';
 @Module({
   imports: [CatsModule, CommonModule],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_GUARD,
-    useClass: ProvideGuard
-  },
-  {
-    provide: APP_INTERCEPTOR,
-    useClass: Logging3Interceptor,
-  },
-
-],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: ProvideGuard,
+    },
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: Logging3Interceptor,
+    // },
+  ],
 })
 // export class AppModule {}
 export class AppModule implements NestModule {

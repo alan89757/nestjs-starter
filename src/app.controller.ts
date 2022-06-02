@@ -43,7 +43,7 @@ const schema = Joi.object({
 });
 
 @UseGuards(RolesGuard)
-@UseInterceptors(Logging1Interceptor)
+// @UseInterceptors(Logging1Interceptor)
 @Controller()
 export class AppController {
   constructor(private readonly catsService: CatsService) {}
@@ -58,7 +58,7 @@ export class AppController {
 
   // 拦截器-响应映射
   @Post('interceptor-response')
-  @UseInterceptors(new TransformInterceptor())
+  // @UseInterceptors(new TransformInterceptor())
   response(): object {
     return {
       errCode: -10000,
