@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './filter/any-exception.filter';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { AuthGlobalGuard } from './guard/auth-global.guard';
+import { Logging2Interceptor } from './interceptor/logging2.interceptor';
+import { TransformInterceptor } from './interceptor/transform.interceptor';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 
 async function bootstrap() {
@@ -14,8 +16,12 @@ async function bootstrap() {
   // app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalFilters(new AllExceptionsFilter());
 
-  // 
-  app.useGlobalGuards(new AuthGlobalGuard());
+  // 守卫
+  // app.useGlobalGuards(new AuthGlobalGuard());
+
+  // 拦截器
+  // app.useGlobalInterceptors(new Logging2Interceptor())
+  app.useGlobalInterceptors(new TransformInterceptor())
 
   await app.listen(3000);
 }

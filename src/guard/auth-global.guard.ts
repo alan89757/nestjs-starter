@@ -7,7 +7,7 @@ export class AuthGlobalGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    console.log("AuthGlobalGuard__", request.body);
+    // console.log("AuthGlobalGuard__", request.body);
     // return validateForm(request.body);
     return true;
   }

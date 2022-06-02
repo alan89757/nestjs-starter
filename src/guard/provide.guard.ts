@@ -7,7 +7,7 @@ export class ProvideGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    console.log('ProvideGuard__', request.body);
+    // console.log('ProvideGuard__', request.body);
     // validateForm(request.body);  // 验证表单内容
     return true;
   }
