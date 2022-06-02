@@ -6,9 +6,13 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(LoggerMiddleware);
-  app.useGlobalFilters(new HttpExceptionFilter());
+  // 中间件
+  // app.use(LoggerMiddleware);
+
+  // 异常过滤
+  // app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalFilters(new AllExceptionsFilter());
+
   await app.listen(3000);
 }
 bootstrap();
