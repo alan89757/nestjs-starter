@@ -38,35 +38,31 @@ import FormSchema from './schema/form.schema';
 const Joi = require('joi');
 
 const schema = Joi.object({
-  username: Joi.string()
-      .min(3)
-      .max(16)
-      .required(),
-  password: Joi.string()
-})
+  username: Joi.string().min(3).max(16).required(),
+  password: Joi.string(),
+});
 
 @UseGuards(RolesGuard)
 @UseInterceptors(Logging1Interceptor)
 @Controller()
 export class AppController {
-  constructor(private readonly catsService: CatsService) { }
-  
+  constructor(private readonly catsService: CatsService) {}
+
   // 拦截器-异常映射
-  @Get('interceptor-exception')
-  @UseInterceptors(new ErrorsInterceptor())
+  // @Get('interceptor-exception')
+  // @UseInterceptors(new ErrorsInterceptor())
   exception(): string {
     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     // return 'get interceptor-exception';
-    
   }
-  
+
   // 拦截器-响应映射
   @Post('interceptor-response')
   @UseInterceptors(new TransformInterceptor())
   response(): object {
     return {
       errCode: -10000,
-      msg: '购买失败'
+      msg: '购买失败',
     };
   }
   // 绑定拦截器-三种方式

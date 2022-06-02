@@ -21,7 +21,7 @@ async function bootstrap() {
 
   // 拦截器
   // app.useGlobalInterceptors(new Logging2Interceptor())
-  app.useGlobalInterceptors(new TransformInterceptor())
+  app.useGlobalInterceptors(new TransformInterceptor());
 
   await app.listen(3000);
 }
