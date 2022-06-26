@@ -18,17 +18,30 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "nuxt:dev": "nuxt",
+    "nuxt:build": "nuxt build",
+    "nuxt:start": "nuxt start --port 3020",
+    "nuxt:generate": "nuxt generate",
+    "nuxt:test": "jest",
+    "nuxt": "nuxt",
+    "nest": "nest start"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@types/joi": "^17.2.3",
+    "ant-design-vue": "^1.7.8",
+    "core-js": "^3.19.3",
     "joi": "^17.6.0",
+    "nuxt": "^2.15.8",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "vue": "^2.6.14",
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.11.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
@@ -38,11 +51,6 @@
     "@types/jest": "27.5.0",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.0.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "jest": "28.0.3",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.20",
@@ -51,7 +59,11 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "@vue/test-utils": "^1.3.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^27.4.4",
+    "vue-jest": "^3.0.4"
   },
   "jest": {
     "moduleFileExtensions": [
