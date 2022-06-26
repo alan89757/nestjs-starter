@@ -6,8 +6,18 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "build": "run-s clean:dist compile:server compile:client copy:.nuxt copy:client copy:config",
+    "clean:dist": "rimraf dist",
+    "compile:server": "tsc -p tsconfig.build.json",
+    "compile:client": "cross-env mode=production nuxt build",
+    "copy:client": "copyfiles -a \"client/**/*\" dist",
+    "copy:.nuxt": "copyfiles -a \".nuxt/**/*\" dist",
+    "copy:config": "copyfiles nuxt.config.js package.json package-lock.json dist",
+
+    "dev": "cross-env IS_NUXT_ENABLED=true nodemon",
+    "dev:client": "nuxt",
+    "dev:server": "nodemon",
     "prebuild": "rimraf dist",
-    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -33,6 +43,7 @@
     "@types/joi": "^17.2.3",
     "ant-design-vue": "^1.7.8",
     "core-js": "^3.19.3",
+    "fork-ts-checker-webpack-plugin": "^6.3.3",
     "joi": "^17.6.0",
     "nuxt": "^2.15.8",
     "reflect-metadata": "^0.1.13",
@@ -41,7 +52,7 @@
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
-    "webpack": "^5.11.0"
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
@@ -51,7 +62,14 @@
     "@types/jest": "27.5.0",
     "@types/node": "^16.0.0",
     "@types/supertest": "^2.0.11",
+    "@vue/test-utils": "^1.3.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^27.4.4",
+    "copyfiles": "^2.1.0",
+    "cross-env": "^5.2.0",
     "jest": "28.0.3",
+    "nodemon": "^1.18.10",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.20",
     "supertest": "^6.1.3",
@@ -60,9 +78,6 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
     "typescript": "^4.3.5",
-    "@vue/test-utils": "^1.3.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^27.4.4",
     "vue-jest": "^3.0.4"
   },
   "jest": {

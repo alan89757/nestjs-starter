@@ -9,9 +9,10 @@ import { Logging3Interceptor } from './interceptor/logging3.interceptor';
 import { Logger1Middleware } from './middleware/logger1.middleware';
 import { Logger2Middleware } from './middleware/logger2.middleware';
 import { Logger3Middleware } from './middleware/logger3.middleware';
+import { NuxtModule } from './nuxt/nuxt.module';
 
 @Module({
-  imports: [CatsModule, CommonModule],
+  imports: [CatsModule, CommonModule, NuxtModule],
   controllers: [AppController],
   providers: [
     AppService,

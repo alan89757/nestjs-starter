@@ -24,7 +24,7 @@ import {
 import { Request } from 'express';
 // import Joi from 'joi';
 import { AppService } from './app.service';
-import { CatsService } from './cats/cats.service';
+// import { CatsService } from './cats/cats.service';
 import { ForbiddenException } from './exception/forbidden.exception';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { RolesGuard } from './guard/roles.guard';
@@ -46,7 +46,7 @@ const schema = Joi.object({
 // @UseInterceptors(Logging1Interceptor)
 @Controller()
 export class AppController {
-  constructor(private readonly catsService: CatsService) {}
+  constructor() {}
 
   // 拦截器-异常映射
   @Get('interceptor-exception')

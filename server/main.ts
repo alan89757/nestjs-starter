@@ -17,7 +17,7 @@ async function bootstrap() {
   // app.useGlobalFilters(new AllExceptionsFilter());
 
   // 守卫
-  app.useGlobalGuards(new AuthGlobalGuard());
+  // app.useGlobalGuards(new AuthGlobalGuard());
 
   // 拦截器
   // app.useGlobalInterceptors(new Logging2Interceptor())
