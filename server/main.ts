@@ -23,6 +23,6 @@ async function bootstrap() {
   // app.useGlobalInterceptors(new Logging2Interceptor())
   // app.useGlobalInterceptors(new TransformInterceptor());
 
-  await app.listen(3000);
+  await app.listen(3010);
 }
 bootstrap();
